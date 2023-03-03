@@ -12,7 +12,6 @@ ejemplo: automotoraenv/Scripts/activate
 # salir de entorno virtual
 comando: deactivate
 
-
 # ayuda compartir proyecto con entorno virtual python
 https://www.youtube.com/watch?v=SXVdnEGetPI
 
