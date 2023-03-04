@@ -107,8 +107,6 @@ def sesiones():
         st.session_state['mdl_generalista'] = None
     if 'mdl_premium1' not in st.session_state:
         st.session_state['mdl_premium1'] = None
-    if 'mdl_premium1' not in st.session_state:
-        st.session_state['mdl_premium1'] = None
     if 'mdl_premium2' not in st.session_state:
         st.session_state['mdl_premium2'] = None        
     if 'mdl_premium3' not in st.session_state:
