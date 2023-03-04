@@ -196,6 +196,7 @@ def main():
     st.title('Anaconda Predict')
     st.subheader('Ingreso de Datos')
 
+
     # titulo de sidebar
     st.sidebar.header('Seleccione')
 
