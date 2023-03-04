@@ -165,7 +165,8 @@ def report_metrics(model, dataframeTrain, dataframeTest, vector_objetivo, titulo
          'R2 Score': R2_Score,
          'Min Price': min_price,
          'Max Price': max_price,
-         'Mean Price': mean_price,    
+         'Mean Price': mean_price,
+         'Porcentaje del error': Mae / mean_price,
          'Cantidad Filas': filas}
     
     df_Predict = df_Predict.append(d, ignore_index=True)
