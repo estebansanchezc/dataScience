@@ -127,33 +127,33 @@ def sesiones():
 def main():
     sesiones()   
         
-    if st.session_state.mdl_generalista == None:
-        mdl_generalista = pickle.load(
-          open('notebook/streamlit/modelos_serializados/RandomForestRegressor_generalista.sav', 'rb+'))
-        st.session_state.mdl_generalista = mdl_generalista
-    else:
-        mdl_generalista = st.session_state.mdl_generalista
+    # if st.session_state.mdl_generalista == None:
+    #     mdl_generalista = pickle.load(
+    #       open('notebook/streamlit/modelos_serializados/RandomForestRegressor_generalista.sav', 'rb+'))
+    #     st.session_state.mdl_generalista = mdl_generalista
+    # else:
+    #     mdl_generalista = st.session_state.mdl_generalista
 
-    if st.session_state.mdl_premium1 == None:            
-        mdl_premium1 = pickle.load(
-        open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_1.sav', 'rb+'))
-        st.session_state.mdl_premium1 = mdl_premium1
-    else:
-        mdl_premium1 = st.session_state.mdl_premium1
+    # if st.session_state.mdl_premium1 == None:            
+    #     mdl_premium1 = pickle.load(
+    #     open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_1.sav', 'rb+'))
+    #     st.session_state.mdl_premium1 = mdl_premium1
+    # else:
+    #     mdl_premium1 = st.session_state.mdl_premium1
     
-    if st.session_state.mdl_premium2 == None:            
-        mdl_premium2 = pickle.load(
-        open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_2.sav', 'rb+'))
-        st.session_state.mdl_premium2 = mdl_premium2
-    else:
-        mdl_premium2 = st.session_state.mdl_premium2
+    # if st.session_state.mdl_premium2 == None:            
+    #     mdl_premium2 = pickle.load(
+    #     open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_2.sav', 'rb+'))
+    #     st.session_state.mdl_premium2 = mdl_premium2
+    # else:
+    #     mdl_premium2 = st.session_state.mdl_premium2
                 
-    if st.session_state.mdl_premium3 == None:  
-        mdl_premium3 = pickle.load(
-        open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_3.sav', 'rb+'))
-        st.session_state.mdl_premium3 = mdl_premium3
-    else:
-        mdl_premium3 = st.session_state.mdl_premium3
+    # if st.session_state.mdl_premium3 == None:  
+    #     mdl_premium3 = pickle.load(
+    #     open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_3.sav', 'rb+'))
+    #     st.session_state.mdl_premium3 = mdl_premium3
+    # else:
+    #     mdl_premium3 = st.session_state.mdl_premium3
     
     if st.session_state.mdl_premium4 == None:      
         mdl_premium4 = pickle.load(
@@ -306,18 +306,18 @@ def main():
     # st.subheader(df)
 
     if st.button('Valorizar'):
-        if model_selected == 'rango desde 0 a 25.000':
-            result = mdl_generalista.predict(df)
-            st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
-        if model_selected == 'rango desde 25.001 a 35.000':
-            result = mdl_premium1.predict(df)
-            st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
-        if model_selected == 'rango desde 35.0001 a 45.000':
-            result = mdl_premium2.predict(df)
-            st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
-        if model_selected == 'rango desde 45.001 a 55.000':
-            result = mdl_premium3.predict(df)
-            st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
+        # if model_selected == 'rango desde 0 a 25.000':
+        #     result = mdl_generalista.predict(df)
+        #     st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
+        # if model_selected == 'rango desde 25.001 a 35.000':
+        #     result = mdl_premium1.predict(df)
+        #     st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
+        # if model_selected == 'rango desde 35.0001 a 45.000':
+        #     result = mdl_premium2.predict(df)
+        #     st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
+        # if model_selected == 'rango desde 45.001 a 55.000':
+        #     result = mdl_premium3.predict(df)
+        #     st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
         if model_selected == 'rango desde 55.001 a 65.000':
             result = mdl_premium4.predict(df)
             st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
