@@ -294,9 +294,13 @@ def main():
     df = user_input_parameters()
 
     # escoger el modelo preferido
-    option = ['rango desde 0 a 25.000', 'rango desde 25.001 a 35.000', 
-              'rango desde 35.0001 a 45.000', 'rango desde 45.001 a 55.000',
-              'rango desde 55.001 a 65.000', 'rango desde 65.001 a 75.000', 
+    # option = ['rango desde 0 a 25.000', 'rango desde 25.001 a 35.000', 
+    #           'rango desde 35.0001 a 45.000', 'rango desde 45.001 a 55.000',
+    #           'rango desde 55.001 a 65.000', 'rango desde 65.001 a 75.000', 
+    #           'rango desde 75.001 a 85.000', 'rango desde 85.001 a 95.000', 
+    #           'mayores a 95.001']
+    
+    option = ['rango desde 55.001 a 65.000', 'rango desde 65.001 a 75.000', 
               'rango desde 75.001 a 85.000', 'rango desde 85.001 a 95.000', 
               'mayores a 95.001']
     model_selected = st.sidebar.selectbox(
