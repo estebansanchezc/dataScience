@@ -3,6 +3,7 @@ import pickle
 import pandas as pd
 from models_bd import make, model, state, city, fuel_type
 from bd_data import selectTable, conexion_sqlalchemy, selectTableWhere
+import bz2
 # from localStoragePy import localStoragePy
 # localStorage = localStoragePy('appanaconda', 'streamlit')
 
@@ -141,53 +142,83 @@ def main():
     # else:
     #     mdl_premium1 = st.session_state.mdl_premium1
     
-    # if st.session_state.mdl_premium2 == None:            
-    #     mdl_premium2 = pickle.load(
-    #     open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_2.sav', 'rb+'))
-    #     st.session_state.mdl_premium2 = mdl_premium2
-    # else:
-    #     mdl_premium2 = st.session_state.mdl_premium2
+    if st.session_state.mdl_premium2 == None:            
+        #  mdl_premium2 = pickle.load(
+        #  open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_2.sav', 'rb+'))
+        #  st.session_state.mdl_premium2 = mdl_premium2
+        mdlpremium2 = bz2.BZ2File("notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_2.sav",'rb')
+        mdl_premium2 = pickle.load(mdlpremium2)
+        mdlpremium2.close()
+        st.session_state.mdl_premium2 = mdl_premium2
+    else:
+         mdl_premium2 = st.session_state.mdl_premium2
                 
-    # if st.session_state.mdl_premium3 == None:  
-    #     mdl_premium3 = pickle.load(
-    #     open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_3.sav', 'rb+'))
-    #     st.session_state.mdl_premium3 = mdl_premium3
-    # else:
-    #     mdl_premium3 = st.session_state.mdl_premium3
-    
-    if st.session_state.mdl_premium4 == None:      
-        mdl_premium4 = pickle.load(
-        open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_4.sav', 'rb+'))
-        st.session_state.mdl_premium3 = mdl_premium4
+    if st.session_state.mdl_premium3 == None:  
+        # mdl_premium3 = pickle.load(
+        # open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_3.sav', 'rb+'))
+        # st.session_state.mdl_premium3 = mdl_premium3
+        mdlpremium3 = bz2.BZ2File("notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_3.sav",'rb')
+        mdl_premium3 = pickle.load(mdlpremium3)
+        mdlpremium3.close()
+        st.session_state.mdl_premium3 = mdl_premium3
+    else:
+        mdl_premium3 = st.session_state.mdl_premium3
+        
+    if st.session_state.mdl_premium4 == None:
+        mdlpremium4 = bz2.BZ2File("notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_4.sav",'rb')
+        mdl_premium4 = pickle.load(mdlpremium4)
+        mdlpremium4.close()
+        st.session_state.mdl_premium4 = mdl_premium4
+        # mdl_premium4 = pickle.load(
+        # open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_4.sav', 'rb+'))
+        # st.session_state.mdl_premium3 = mdl_premium4
     else:
         mdl_premium4 = st.session_state.mdl_premium4
     
     if st.session_state.mdl_premium5 == None:       
-        mdl_premium5 = pickle.load(
-        open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_5.sav', 'rb+'))
+        mdlpremium5 = bz2.BZ2File("notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_5.sav",'rb')
+        mdl_premium5 = pickle.load(mdlpremium5)
+        mdlpremium5.close()
         st.session_state.mdl_premium5 = mdl_premium5
+        # mdl_premium5 = pickle.load(
+        # open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_5.sav', 'rb+'))
+        # st.session_state.mdl_premium5 = mdl_premium5
     else:
         mdl_premium5 = st.session_state.mdl_premium5
         
         
-    if st.session_state.mdl_premium6 == None:           
-        mdl_premium6 = pickle.load(
-        open('notebook/streamlit/modelos_serializados/BaggingRegressor_premium_6.sav', 'rb+'))
-        st.session_state.mdl_premium6 = mdl_premium6
+    if st.session_state.mdl_premium6 == None:
+        mdlpremium6 = bz2.BZ2File("notebook/streamlit/modelos_serializados/BaggingRegressor_premium_6.sav",'rb')
+        mdl_premium6 = pickle.load(mdlpremium6)
+        mdlpremium6.close()
+        st.session_state.mdl_premium6 = mdl_premium6  
+        # mdl_premium6 = pickle.load(
+        # open('notebook/streamlit/modelos_serializados/BaggingRegressor_premium_6.sav', 'rb+'))
+        # st.session_state.mdl_premium6 = mdl_premium6
     else:
         mdl_premium6 = st.session_state.mdl_premium6
     
-    if st.session_state.mdl_premium7 == None:         
-        mdl_premium7 = pickle.load(open(
-        'notebook/streamlit/modelos_serializados/GradientBoostingRegressor_premium_7.sav', 'rb+'))
+    if st.session_state.mdl_premium7 == None:
+        mdlpremium7 = bz2.BZ2File("notebook/streamlit/modelos_serializados/GradientBoostingRegressor_premium_7.sav",'rb')
+        mdl_premium7 = pickle.load(mdlpremium7)
+        mdlpremium7.close()
         st.session_state.mdl_premium7 = mdl_premium7
+        
+        # mdl_premium7 = pickle.load(open(
+        # 'notebook/streamlit/modelos_serializados/GradientBoostingRegressor_premium_7.sav', 'rb+'))
+        # st.session_state.mdl_premium7 = mdl_premium7
     else:
         mdl_premium7 = st.session_state.mdl_premium7
     
-    if st.session_state.mdl_premium8 == None:          
-        mdl_premium8 = pickle.load(
-        open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_8.sav', 'rb+'))
+    if st.session_state.mdl_premium8 == None:
+        mdlpremium8 = bz2.BZ2File("notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_8.sav",'rb')
+        mdl_premium8 = pickle.load(mdlpremium8)
+        mdlpremium8.close()
         st.session_state.mdl_premium8 = mdl_premium8
+        
+        # mdl_premium8 = pickle.load(
+        # open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_8.sav', 'rb+'))
+        # st.session_state.mdl_premium8 = mdl_premium8
     else:
         mdl_premium8 = st.session_state.mdl_premium8
         
@@ -300,7 +331,8 @@ def main():
     #           'rango desde 75.001 a 85.000', 'rango desde 85.001 a 95.000', 
     #           'mayores a 95.001']
     
-    option = ['rango desde 55.001 a 65.000', 'rango desde 65.001 a 75.000', 
+    option = ['rango desde 35.0001 a 45.000','rango desde 45.001 a 55.000',
+              'rango desde 55.001 a 65.000', 'rango desde 65.001 a 75.000', 
               'rango desde 75.001 a 85.000', 'rango desde 85.001 a 95.000', 
               'mayores a 95.001']
     model_selected = st.sidebar.selectbox(
@@ -316,12 +348,12 @@ def main():
         # if model_selected == 'rango desde 25.001 a 35.000':
         #     result = mdl_premium1.predict(df)
         #     st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
-        # if model_selected == 'rango desde 35.0001 a 45.000':
-        #     result = mdl_premium2.predict(df)
-        #     st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
-        # if model_selected == 'rango desde 45.001 a 55.000':
-        #     result = mdl_premium3.predict(df)
-        #     st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
+        if model_selected == 'rango desde 35.0001 a 45.000':
+             result = mdl_premium2.predict(df)
+             st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
+        if model_selected == 'rango desde 45.001 a 55.000':
+             result = mdl_premium3.predict(df)
+             st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
         if model_selected == 'rango desde 55.001 a 65.000':
             result = mdl_premium4.predict(df)
             st.success('predicción valor de compra: {:.2f} usd'.format(result[0]))
