@@ -9,6 +9,7 @@ from matplotlib import pyplot as plt
 import seaborn as sns
 from sklearn.metrics import mean_squared_error, median_absolute_error, r2_score, confusion_matrix
 import numpy as np
+import psycopg2
 
 def conexion_sqlalchemy():
     """
@@ -143,7 +144,7 @@ def report_metrics(model, dataframeTrain, dataframeTest, vector_objetivo, titulo
     list_model_result[key] = clf_model
     
     preds = clf_model.predict(X_test_model)
-    
+       
     Rmse = np.sqrt(mean_squared_error(y_test_model, preds))
     Mae = median_absolute_error(y_test_model, preds)
     R2_Score = r2_score(y_test_model, preds)
@@ -167,6 +168,7 @@ def report_metrics(model, dataframeTrain, dataframeTest, vector_objetivo, titulo
          'Max Price': max_price,
          'Mean Price': mean_price,
          'Porcentaje del error': Mae / mean_price,
+         'Promedio prediccion': np.mean(preds),
          'Cantidad Filas': filas}
     
     df_Predict = df_Predict.append(d, ignore_index=True)
