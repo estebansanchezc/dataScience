@@ -4,6 +4,7 @@ import pandas as pd
 from models_bd import make, model, state, city, fuel_type
 from bd_data import selectTable, conexion_sqlalchemy, selectTableWhere
 import bz2
+import time
 # from localStoragePy import localStoragePy
 # localStorage = localStoragePy('appanaconda', 'streamlit')
 
@@ -41,7 +42,8 @@ def cargarDataModelos(select_make):
 
     conn = conexion_sqlalchemy()
 
-    list_modelo = selectTableWhere(conn, model, select_make)
+    list_modelo = selectTable(conn, model) 
+    #selectTableWhere(conn, model, select_make)
 
     conn.dispose()
     # list_modelo = filter(lambda x: x.Make == select_make, list_modelo)
@@ -93,25 +95,26 @@ def format_func_1(datalist, valueSelected):
     return fil[0].Id
 
 def format_func_2(datalist, valueSelected):
+    #print('datalist', type(datalist))    
     lst = list(datalist)
     fil = [x for x in lst if x.Model_Car == valueSelected]
     return fil[0].Id
 
 def sesiones():
     if 'dataModelos' not in st.session_state:
-        st.session_state['dataModelos'] = ''
+        st.session_state['dataModelos'] = None
     if 'dataMarca' not in st.session_state:
         st.session_state['dataMarca'] = None
     if 'dataEstados' not in st.session_state:
         st.session_state['dataEstados'] = None
-    if 'mdl_generalista' not in st.session_state:
-        st.session_state['mdl_generalista'] = None
-    if 'mdl_premium1' not in st.session_state:
-        st.session_state['mdl_premium1'] = None
+    # if 'mdl_generalista' not in st.session_state:
+    #     st.session_state['mdl_generalista'] = None
+    # if 'mdl_premium1' not in st.session_state:
+    #     st.session_state['mdl_premium1'] = None
     if 'mdl_premium2' not in st.session_state:
         st.session_state['mdl_premium2'] = None        
     if 'mdl_premium3' not in st.session_state:
-        st.session_state['mdl_premium3'] = None      
+        st.session_state.mdl_premium3 = ''
     if 'mdl_premium4' not in st.session_state:
         st.session_state['mdl_premium4'] = None      
     if 'mdl_premium5' not in st.session_state:
@@ -126,8 +129,7 @@ def sesiones():
            
 
 def main():
-    sesiones()   
-        
+    sesiones()
     # if st.session_state.mdl_generalista == None:
     #     mdl_generalista = pickle.load(
     #       open('notebook/streamlit/modelos_serializados/RandomForestRegressor_generalista.sav', 'rb+'))
@@ -151,9 +153,9 @@ def main():
         mdlpremium2.close()
         st.session_state.mdl_premium2 = mdl_premium2
     else:
-         mdl_premium2 = st.session_state.mdl_premium2
+        mdl_premium2 = st.session_state.mdl_premium2
                 
-    if st.session_state.mdl_premium3 == None:  
+    if st.session_state['mdl_premium3'] is None:  
         # mdl_premium3 = pickle.load(
         # open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_3.sav', 'rb+'))
         # st.session_state.mdl_premium3 = mdl_premium3
@@ -243,12 +245,20 @@ def main():
         select_make = st.selectbox(
             'Selecciona marca vehiculo 👇', options=(l.Make_Car for l in dataMarca))
               
+                
+        if st.session_state.dataModelos == None:
+            dataModelos = cargarDataModelos(select_make)
+            st.session_state.dataModelos = dataModelos
+        else:
+            dataModelos = st.session_state.dataModelos
+            list_modelo = filter(lambda x: x.Make == select_make, dataModelos)
+            dataModelos = list(list_modelo)
         
-        dataModelos = cargarDataModelos(select_make)
+        time.sleep(2)    
+                            
         select_model = st.selectbox(
             'Selecciona modelo vehiculo 👇', (l.Model_Car for l in dataModelos))
-
-
+        
         if st.session_state.dataEstados == None:
             dataEstados = cargarDataEstados()
             st.session_state.dataEstados = dataEstados
