@@ -114,7 +114,7 @@ def sesiones():
     if 'mdl_premium2' not in st.session_state:
         st.session_state['mdl_premium2'] = None        
     if 'mdl_premium3' not in st.session_state:
-        st.session_state.mdl_premium3 = ''
+        st.session_state.mdl_premium3 = None
     if 'mdl_premium4' not in st.session_state:
         st.session_state['mdl_premium4'] = None      
     if 'mdl_premium5' not in st.session_state:
@@ -285,17 +285,20 @@ def main():
 
         text_input_mileage = st.number_input(
             label="ingrese millas 👇",
-            min_value=1
+            min_value=1,
+            max_value=200000
         )
 
         text_input_CC = st.number_input(
             label="ingrese desplazamiento motor 👇",
-            min_value=1
+            min_value=1,
+            max_value=100
         )
 
         text_input_Cilindros = st.number_input(
             label="ingrese cilindros del motor 👇",
-            min_value=1
+            min_value=1,
+            max_value=10
         )
 
         # text_input_doors = st.number_input(
