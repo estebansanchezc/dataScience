@@ -163,16 +163,16 @@ def porcentajeError(model_selected):
 
 def main():
     sesiones()
-    if st.session_state.mdl_generalista == None:
-        mdlgeneralista = bz2.BZ2File("notebook/streamlit/modelos_serializados/RandomForestRegressor_generalista.sav",'rb')
-        mdl_generalista = pickle.load(mdlgeneralista)
-        mdlgeneralista.close()
-        st.session_state.mdl_generalista = mdl_generalista
-        # mdl_generalista = pickle.load(
-        #   open('notebook/streamlit/modelos_serializados/RandomForestRegressor_generalista.sav', 'rb+'))
-        # st.session_state.mdl_generalista = mdl_generalista
-    else:
-        mdl_generalista = st.session_state.mdl_generalista
+    # if st.session_state.mdl_generalista == None:
+    #     mdlgeneralista = bz2.BZ2File("notebook/streamlit/modelos_serializados/RandomForestRegressor_generalista.sav",'rb')
+    #     mdl_generalista = pickle.load(mdlgeneralista)
+    #     mdlgeneralista.close()
+    #     st.session_state.mdl_generalista = mdl_generalista
+    #     # mdl_generalista = pickle.load(
+    #     #   open('notebook/streamlit/modelos_serializados/RandomForestRegressor_generalista.sav', 'rb+'))
+    #     # st.session_state.mdl_generalista = mdl_generalista
+    # else:
+    #     mdl_generalista = st.session_state.mdl_generalista
 
     # if st.session_state.mdl_premium1 == None:
     #     mdlpremium1 = bz2.BZ2File("notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_1.sav",'rb')
@@ -186,16 +186,16 @@ def main():
     # else:
     #     mdl_premium1 = st.session_state.mdl_premium1
     
-    # if st.session_state.mdl_premium2 == None:            
-    #     #  mdl_premium2 = pickle.load(
-    #     #  open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_2.sav', 'rb+'))
-    #     #  st.session_state.mdl_premium2 = mdl_premium2
-    #     mdlpremium2 = bz2.BZ2File("notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_2.sav",'rb')
-    #     mdl_premium2 = pickle.load(mdlpremium2)
-    #     mdlpremium2.close()
-    #     st.session_state.mdl_premium2 = mdl_premium2
-    # else:
-    #     mdl_premium2 = st.session_state.mdl_premium2
+    if st.session_state.mdl_premium2 == None:            
+        #  mdl_premium2 = pickle.load(
+        #  open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_2.sav', 'rb+'))
+        #  st.session_state.mdl_premium2 = mdl_premium2
+        mdlpremium2 = bz2.BZ2File("notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_2.sav",'rb')
+        mdl_premium2 = pickle.load(mdlpremium2)
+        mdlpremium2.close()
+        st.session_state.mdl_premium2 = mdl_premium2
+    else:
+        mdl_premium2 = st.session_state.mdl_premium2
                 
     if st.session_state.mdl_premium3 is None:  
         # mdl_premium3 = pickle.load(
