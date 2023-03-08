@@ -5,3 +5,4 @@ SQLAlchemy-Utils==0.40.0
 sqlalchemy2-stubs==0.0.2a32
 sqlmodel==0.0.8
 streamlit==1.18.1
+babel==2.12.1
