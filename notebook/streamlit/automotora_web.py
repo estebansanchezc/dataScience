@@ -171,10 +171,7 @@ def main():
     #     mdlgeneralista = bz2.BZ2File("notebook/streamlit/modelos_serializados/RandomForestRegressor_generalista.sav",'rb')
     #     mdl_generalista = pickle.load(mdlgeneralista)
     #     mdlgeneralista.close()
-    # #     st.session_state.mdl_generalista = mdl_generalista
-    # #     # mdl_generalista = pickle.load(
-    # #     #   open('notebook/streamlit/modelos_serializados/RandomForestRegressor_generalista.sav', 'rb+'))
-    # #     # st.session_state.mdl_generalista = mdl_generalista
+    #     st.session_state.mdl_generalista = mdl_generalista
     # else:
     #     mdl_generalista = st.session_state.mdl_generalista
 
@@ -183,10 +180,6 @@ def main():
     #     mdl_premium1 = pickle.load(mdlpremium1)
     #     mdlpremium1.close()
     #     st.session_state.mdl_premium1 = mdl_premium1
-
-    # #     # mdl_premium1 = pickle.load(
-    # #     # open('notebook/streamlit/modelos_serializados/RandomForestRegressor_premium_1.sav', 'rb+'))
-    # #     # st.session_state.mdl_premium1 = mdl_premium1
     # else:
     #     mdl_premium1 = st.session_state.mdl_premium1
 
@@ -350,25 +343,13 @@ def main():
         )
 
         st.session_state.ganancia = st.number_input(
-            label="Porcentaje de ganancia", step=1., format="%.2f")
+            label="Porcentaje de ganancia", 
+            min_value=1.00,
+            step=2., 
+            max_value=100.00,
+            format="%.2f")
 
-        # text_input_doors = st.number_input(
-        #     label="ingrese cantidad de puertas 👇",
-        #     min_value=2
-        # )
-
-        # text_input_speed = st.number_input(
-        #     label="ingrese número de velocidades 👇",
-        #     min_value=4
-        # )
-
-        # sepal_length = st.sidebar.slider('Sepal length', 4.3, 7.9, 5.4)
-
-        # listfiltro_datos = ['Year','Price','Mileage', 'State_Id','Make_Id','Model_Id','Fuel_Id'
-        #                     ,'Engine_Displacement_CC','Engine_Number_Cylinders']
-
-        data_df = {'Year': text_input_year,
-                   # 'Price':0
+        data_df = {'Year': text_input_year,                
                    'Mileage': text_input_mileage,
                    # 'City_Id': 2,
                    'State_Id': format_func_1(dataEstados, select_state),
@@ -376,10 +357,8 @@ def main():
                    'Model_Id': format_func_2(dataModelos, select_model),
                    # 'Doors': text_input_doors,
                    # 'Fuel_Id': format_func_Fuel(dataCombustible, select_fuel),
-                   'Engine_Displacement_CC': text_input_CC,
-                   # 'Engine_Displacement_CI': 4,
-                   'Engine_Number_Cylinders': text_input_Cilindros,
-                   # 'Transmission_Speeds': text_input_speed,
+                   'Engine_Displacement_CC': text_input_CC,                   
+                   'Engine_Number_Cylinders': text_input_Cilindros,                
                    }
 
         features = pd.DataFrame(data_df, index=[0])
@@ -388,7 +367,7 @@ def main():
 
     df = user_input_parameters()
 
-    # escoger el modelo preferido
+    # escoger el rango de precios
     # option = ['rango desde 0 a 25.000', 'rango desde 25.001 a 35.000',
     #           'rango desde 35.0001 a 45.000', 'rango desde 45.001 a 55.000',
     #           'rango desde 55.001 a 65.000', 'rango desde 65.001 a 75.000',
